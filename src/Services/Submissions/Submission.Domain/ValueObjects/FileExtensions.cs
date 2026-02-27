@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Blocks.Core.Extensions;
+
+namespace Submission.Domain.ValueObjects;
+
+public class FileExtensions
+{
+    public IReadOnlyList<string> Extensions { get; init; } = null!;
+
+    public bool IsValidExtension(string extension)
+        // NOTE if the list is empty, then all extensions are allowed
+        => !Extensions.IsEmpty() || Extensions.Contains(extension, StringComparer.OrdinalIgnoreCase);
+}
