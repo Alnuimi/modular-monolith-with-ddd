@@ -8,4 +8,7 @@ public static class Guard
     public static void ThrowIfNotEqual<T>(T value, T other)
         where T : IEquatable<T>?
     => ArgumentOutOfRangeException.ThrowIfEqual(value, other);
+    
+    public static T AgainstNull<T>(T? value, string parameterName)
+       => value ?? throw new ArgumentNullException(parameterName, $"Value cannot be null: '{parameterName}'.");
 }
