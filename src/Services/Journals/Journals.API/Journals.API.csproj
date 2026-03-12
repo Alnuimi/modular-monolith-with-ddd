@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FastEndpoints.Swagger" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8" />
   </ItemGroup>
 
@@ -15,6 +16,14 @@
     <Content Include="..\..\..\.dockerignore">
       <Link>.dockerignore</Link>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Journals\Create\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Articles.Abstractions\Articles.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

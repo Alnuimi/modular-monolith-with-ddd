@@ -56,5 +56,5 @@ internal sealed class UserEntityConfiguration : EntityConfiguration<User>
             .HasForeignKey(e => e.UserId)
             .OnDelete(DeleteBehavior.Cascade);
     }
-    }
+    
 }

@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Journals\" />
+    <Folder Include="Journals\Enums\" />
+    <Folder Include="Journals\ValueObjects\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Blocks.Redis\Blocks.Redis.csproj" />
+  </ItemGroup>
+
 </Project>
