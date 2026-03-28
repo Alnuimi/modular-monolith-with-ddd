@@ -1,0 +1,21 @@
+﻿using Articles.Abstractions.Enums;
+using Blocks.Core;
+using Blocks.Domain.ValueObjects;
+
+namespace Auth.Domain.Persons.ValueObjects;
+
+public class HonorificTitle : StringValueObject
+{
+    private HonorificTitle(string value) => Value = value;
+
+    public static HonorificTitle FromString(string honorific)
+    {
+        Guard.ThrowIfNullOrWhiteSpace(honorific);
+        return new HonorificTitle(honorific.Trim());
+    }
+
+    public static HonorificTitle? FromEnum(Honorific? honorific)
+    {
+        return honorific.HasValue ? new HonorificTitle(honorific!.ToString()) : null;
+    }
+}
