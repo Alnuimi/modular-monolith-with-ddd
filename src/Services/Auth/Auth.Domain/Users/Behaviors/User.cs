@@ -1,4 +1,5 @@
-﻿using Auth.Domain.Users.ValueObjects;
+﻿using Auth.Domain.Persons;
+using Auth.Domain.Persons.ValueObjects;
 using Blocks.Core.Extensions;
 
 namespace Auth.Domain.Users;
@@ -14,13 +15,8 @@ public partial class User
         {
             UserName = userInfo.Email,
             Email = userInfo.Email,
-            FirstName = userInfo.FirstName,
-            LastName = userInfo.LastName,
-            Gender = userInfo.Gender,
             PhoneNumber = userInfo.PhoneNumber,
-            PictureUrl = userInfo.PictureUrl,
-            Honorific = HonorificTitle.FromEnum(userInfo.Honorific),
-            ProfessionalProfile = ProfessionalProfile.Create(userInfo.Position, userInfo.CompanyName, userInfo.Affiliation),
+            Person = Person.Create(userInfo),
             _userRoles = userInfo.UserRoles.Select(UserRole.Create).ToList()
         };
         

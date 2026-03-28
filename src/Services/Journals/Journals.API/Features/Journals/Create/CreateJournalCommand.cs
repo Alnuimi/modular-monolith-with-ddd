@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Journals.API.Features.Journals.Create;
 
-public record CreateJournalCommand(
+public sealed record CreateJournalCommand(
     string Name,
     string Abbreviation,
     string Description,

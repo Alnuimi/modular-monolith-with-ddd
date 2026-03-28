@@ -1,12 +1,12 @@
-﻿using Articles.Abstractions.Enums;
-using Auth.Domain.Users;
+﻿using Auth.Domain.Users;
+using Articles.Security;
 using Auth.Domain.Users.Events;
 using Blocks.Exceptions;
 using FastEndpoints;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
-namespace Auth.API.Features.CreateUser;
+namespace Auth.API.Features.Users.CreateUser;
 
 [Authorize(Roles = Role.USERADMIN)]
 [HttpPost("users")]

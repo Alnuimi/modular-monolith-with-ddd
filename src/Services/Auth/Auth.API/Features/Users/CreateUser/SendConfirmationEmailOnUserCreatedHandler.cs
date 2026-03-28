@@ -6,7 +6,7 @@ using FastEndpoints;
 using Flurl;
 using Microsoft.Extensions.Options;
 
-namespace Auth.API.Features.CreateUser;
+namespace Auth.API.Features.Users.CreateUser;
 
 public class SendConfirmationEmailOnUserCreatedHandler
 (IEmailService _emailService,IHttpContextAccessor _httpContextAccessor, IOptions<EmailOptions> _emailOptions)
@@ -30,9 +30,9 @@ public class SendConfirmationEmailOnUserCreatedHandler
         return new EmailMessage
         (
             Subject : "Your Account Has Been Created - Set Your Password",
-            Content : new Content(ContentType.Html, string.Format(confirmationEmail, user.FullName, resetLink)),
+            Content : new Content(ContentType.Html, string.Format(confirmationEmail, user.Person.FullName, resetLink)),
             From : new EmailAddress("Articles", fromEmailAddress),
-            To : [new EmailAddress(user.FullName, user.Email!)]
+            To : [new EmailAddress(user.Person.FullName, user.Email!)]
         );
         
     }

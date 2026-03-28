@@ -1,22 +1,19 @@
-﻿using Auth.Domain.Users.Enums;
-using Auth.Domain.Users.ValueObjects;
+﻿using Articles.Abstractions.Enums;
+using Auth.Domain.Persons;
+using Auth.Domain.Persons.ValueObjects;
 using Blocks.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace Auth.Domain.Users;
 
+
 public partial class User : IdentityUser<int>, IEntity
 {
-    public required string FirstName { get; set; }
-    public required string LastName { get; set; }
-    public string FullName => $"{FirstName} {LastName}";
-    public required Gender Gender { get; set; }
-    public HonorificTitle? Honorific {get; set;}
-    public ProfessionalProfile? ProfessionalProfile { get; set; }
-
-    public string? PictureUrl { get; set; } = null!;
     public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
     public DateTime? LastLogin  { get; set; }
+    
+    public int PersonId { get; set; }
+    public Person Person { get; set; } = null!;
 
     private List<UserRole> _userRoles = new List<UserRole>();
     public virtual IReadOnlyList<UserRole> UserRoles => _userRoles.AsReadOnly();

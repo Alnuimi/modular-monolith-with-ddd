@@ -20,7 +20,7 @@ builder.Services
 
 var app = builder.Build();
 
-#region USe
+#region Use
 
 app
     .UseSwagger()

@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="Journals\" />
     <Folder Include="Journals\Enums\" />
+    <Folder Include="Journals\Events\" />
     <Folder Include="Journals\ValueObjects\" />
   </ItemGroup>
 

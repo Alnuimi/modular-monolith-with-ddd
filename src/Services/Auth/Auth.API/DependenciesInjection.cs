@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using Articles.Security;
+using Auth.API.Features.Persons;
 using Auth.Domain.Users;
 using Auth.Persistence;
 using Blocks.Core.Extensions;
@@ -31,7 +32,9 @@ public static class DependenciesInjection
             .AddJwtIdentity(config);
         
         services.AddSmtpEmailService(config);
-
+        
+        // gRPC injection
+        services.AddSingleton<GrpcTypeAdapterConfig>();
         return services;
     }
 
