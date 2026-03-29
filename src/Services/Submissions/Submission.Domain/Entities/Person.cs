@@ -4,7 +4,7 @@ using Submission.Domain.ValueObjects;
 
 namespace Submission.Domain.Entities;
 
-public class Person : Entity
+public partial class Person : Entity
 {
     public required string FirstName { get; init; }
     public required string LastName { get; init; }
