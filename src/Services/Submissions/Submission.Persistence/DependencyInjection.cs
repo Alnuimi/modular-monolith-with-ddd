@@ -17,6 +17,9 @@ public static class DependencyInjection
         
         services.AddScoped(typeof(Repository<>));
         services.AddScoped(typeof(ArticleRepository));
+        services.AddScoped(typeof(AssetTypeDefinitionRepository));
+        services.AddScoped(typeof(PersonRepository));
+        
         return services;
     }
 }

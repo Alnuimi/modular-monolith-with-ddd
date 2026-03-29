@@ -35,4 +35,12 @@ public partial class Article
 
         return asset; 
     }
+
+    public void Approve(Person person)
+    {
+        Actors.Add(new ArticleActor
+        {
+            Person = person
+        });
+    }
 }

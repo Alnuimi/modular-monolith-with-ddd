@@ -4,7 +4,7 @@ using Blocks.Domain.Entities;
 
 namespace Auth.Domain.Persons;
 
-public partial class Person : IEntity
+public partial class Person
 {
     public static Person Create(IPersonCreationInfo personInfo)
     {
