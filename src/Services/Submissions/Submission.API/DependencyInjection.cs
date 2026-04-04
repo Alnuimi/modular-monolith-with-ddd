@@ -1,4 +1,8 @@
-﻿using FileStorage.MongoGridFS;
+﻿using Auth.Grpc;
+using Blocks.AspNetCore.Grpc;
+using Blocks.Core.Extensions;
+using FileStorage.MongoGridFS;
+using Journals.Grpc;
 
 namespace Submission.API;
 
@@ -12,6 +16,11 @@ public static class DependencyInjection
             .AddSwaggerGen();                    // Swagger Setup
 
         services.AddMongoFileStorage(configuration); // Module FileStorage
+        
+        // Clients Grpc
+        var grpcOptions = configuration.GetSectionByTypeName<GrpcServicesOptions>();
+        services.AddCodeFirstGrpcClient<IPersonService>(grpcOptions, "Person");
+        services.AddCodeFirstGrpcClient<IJournalService>(grpcOptions, "Journal");
         return services;
     }
 }
