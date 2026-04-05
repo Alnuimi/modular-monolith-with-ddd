@@ -13,4 +13,8 @@ public class Article : AggregateRoot
     public int? SubmittedById { get; init; }
     public Person? SubmittedBy {get; init;}
     public ArticleStage Stage { get; private set; }
+    public required int JournalId { get; init; }
+    public Journal Journal { get; init; } = null!;
+    private readonly List<ArticleActor> _actors = new();
+    public IReadOnlyList<ArticleActor> Actors => _actors.AsReadOnly();
 }
