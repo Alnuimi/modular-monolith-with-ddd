@@ -2,6 +2,7 @@
 using System.Linq;
 using Articles.Abstractions.Enums;
 using Blocks.Domain;
+using Submission.Domain.Events;
 
 namespace Submission.Domain.Entities;
 
@@ -42,5 +43,7 @@ public partial class Article
         {
             Person = person
         });
+        
+        AddDomainEvent(new ArticleApproved(this));
     }
 }

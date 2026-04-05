@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Blocks.EntityFramework.Interceptors;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Submission.Persistence.Repositories;
 
@@ -10,9 +13,12 @@ public static class DependencyInjection
         IConfiguration configuration)
     {
         var connectionString  = configuration.GetConnectionString("Database");
+
+        services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
         services.AddDbContext<SubmissionDbContext>((provider, options) =>
         {
-
+            options.UseSqlServer(connectionString);
+            options.AddInterceptors(provider.GetService<ISaveChangesInterceptor>());
         });
         
         services.AddScoped(typeof(Repository<>));

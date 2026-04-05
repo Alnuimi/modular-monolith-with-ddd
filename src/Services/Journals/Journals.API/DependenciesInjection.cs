@@ -35,7 +35,7 @@ public static class DependenciesInjection
             .AddEndpointsApiExplorer()
             .AddSwaggerGen()
             // .AddJwtAuthentication(config)
-            .AddMapster()
+            .AddMapsterConfigsFromCurrentAssembly()
             .AddAuthorization();
         
         // Server Grpc

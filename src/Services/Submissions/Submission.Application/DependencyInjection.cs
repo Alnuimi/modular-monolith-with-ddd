@@ -1,4 +1,7 @@
-﻿using Blocks.MediatR.Behaviors;
+﻿using System.Reflection;
+using Blocks.Core.Mapster;
+using Blocks.MediatR.Behaviors;
+using Blocks.Messaging.MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Submission.Application.Features.CreateArticle;
@@ -11,13 +14,15 @@ public static class DependencyInjection
         IConfiguration configuration)
     {
         services
+            .AddMapsterConfigsFromCurrentAssembly()
             .AddValidatorsFromAssemblyContaining<CreateArticleCommandValidator>()
             .AddMediatR(config =>
             {
                 config.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
                 config.AddOpenBehavior(typeof(ValidationBehavior<,>));
                 config.AddOpenBehavior(typeof(SetUserIdBehavior<,>));
-            });
+            })
+            .AddMassTransitWithRabbitMq(configuration, Assembly.GetExecutingAssembly());
             return services;
     }
 }
