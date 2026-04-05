@@ -12,6 +12,9 @@ namespace Submission.Domain.Entities;
         public ArticleStage Stage { get; internal set; }
         public int JournalId { get; set; }
         public required Journal Journal { get; init; }
+        
+        public int? SubmittedById { get; set; }
+        public Person? SubmittedBy { get; set; }
 
         private readonly List<Asset> _assets = new();
         public IReadOnlyList<Asset> Assets  => _assets.AsReadOnly();
