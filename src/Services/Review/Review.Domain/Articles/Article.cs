@@ -1,5 +1,6 @@
 ﻿using Articles.Abstractions.Enums;
 using Blocks.Domain.Entities;
+using Review.Domain.Assets;
 using Review.Domain.Shared;
 
 namespace Review.Domain.Articles;
@@ -17,4 +18,7 @@ public class Article : AggregateRoot
     public Journal Journal { get; init; } = null!;
     private readonly List<ArticleActor> _actors = new();
     public IReadOnlyList<ArticleActor> Actors => _actors.AsReadOnly();
+
+    private readonly List<Asset> _assets = new();
+    public IReadOnlyList<Asset> Assets => _assets.AsReadOnly();
 }
