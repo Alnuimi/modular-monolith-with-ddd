@@ -1,8 +1,9 @@
-﻿using Review.Domain.Shared.ValueObjects;
+﻿using Blocks.Domain.Entities;
+using Review.Domain.Shared.ValueObjects;
 
 namespace Review.Domain.Shared;
 
-public class Person
+public class Person : Entity
 {
     public required string FirstName { get; init; }
     public required string LastName { get; init; }
