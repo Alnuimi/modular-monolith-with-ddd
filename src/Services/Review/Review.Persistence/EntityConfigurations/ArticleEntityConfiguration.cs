@@ -7,7 +7,7 @@ using Review.Domain.Articles;
 
 namespace Review.Persistence.EntityConfigurations;
 
-public class ArticleEntityConfiguration : EntityConfiguration<Article>
+internal sealed class ArticleEntityConfiguration : EntityConfiguration<Article>
 {
     public override void Configure(EntityTypeBuilder<Article> builder)
     {
