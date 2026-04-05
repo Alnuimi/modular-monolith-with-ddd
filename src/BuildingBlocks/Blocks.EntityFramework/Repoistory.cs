@@ -44,8 +44,8 @@ public class Repository<TContext,TEntity>
     public virtual async Task<TEntity?> FindByIdAsync(int id)
         => await _entity.FindAsync(id);
     
-    public virtual async Task<TEntity?> GetByIdAsync(int id)
-        => await Query().FirstOrDefaultAsync(e => e.Id.Equals(id));
+    public virtual async Task<TEntity?> GetByIdAsync(int id, CancellationToken ct = default)
+        => await Query().FirstOrDefaultAsync(e => e.Id.Equals(id), ct);
 
     public virtual async Task<TEntity?> AddAsync(TEntity entity, CancellationToken ct = default)
         => (await _entity.AddAsync(entity, ct)).Entity;

@@ -1,3 +1,5 @@
-﻿namespace Blocks.Domain;
+﻿using MediatR;
 
-public interface IDomainEvent;
+namespace Blocks.Domain;
+
+public interface IDomainEvent : INotification;
