@@ -7,11 +7,19 @@ namespace Blocks.EntityFramework.EntityConfigurations;
 public abstract class EntityConfiguration<T> : IEntityTypeConfiguration<T>
     where T : class, IEntity
 {
+    protected virtual bool HasGeneratedId => true;
     public virtual void Configure(EntityTypeBuilder<T> builder)
     {
         builder.HasKey(e => e.Id);
-        
-        builder.Property(e => e.Id)
-            .ValueGeneratedNever().HasColumnOrder(0);
+        if (HasGeneratedId)
+        {
+            builder.Property(e => e.Id)
+                .ValueGeneratedOnAdd().HasColumnOrder(0);
+        }
+        else 
+        {
+            builder.Property(e => e.Id)
+                .ValueGeneratedNever().HasColumnOrder(0);
+        }
     }
 }
