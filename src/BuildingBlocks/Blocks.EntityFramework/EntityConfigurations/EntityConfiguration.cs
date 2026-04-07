@@ -4,13 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Blocks.EntityFramework.EntityConfigurations;
 
-public abstract class EntityConfiguration<T> : IEntityTypeConfiguration<T>
+public abstract class EntityConfiguration<T> : EntityConfiguration<T, int>
     where T : class, IEntity
 {
     protected virtual bool HasGeneratedId => true;
-    public virtual void Configure(EntityTypeBuilder<T> builder)
+    public override void Configure(EntityTypeBuilder<T> builder)
     {
-        builder.HasKey(e => e.Id);
         if (HasGeneratedId)
         {
             builder.Property(e => e.Id)
@@ -21,5 +20,19 @@ public abstract class EntityConfiguration<T> : IEntityTypeConfiguration<T>
             builder.Property(e => e.Id)
                 .ValueGeneratedNever().HasColumnOrder(0);
         }
+        
+        base.Configure(builder);
     }
+}
+
+public abstract class EntityConfiguration<T, TKey> : IEntityTypeConfiguration<T>
+    where T : class, IEntity<TKey>
+    where TKey : struct
+{
+    public virtual void Configure(EntityTypeBuilder<T> builder)
+    {
+        builder.HasKey(e => e.Id);
+    }
+
+    protected virtual string EntityName => typeof(T).Name;
 }
