@@ -14,7 +14,7 @@ public sealed class JournalGrpcService(Repository<Journal> _journalRepository) :
 
         return new IsEditorAssignedToJournalResponse
         {
-            IsAssigned = journal.ChiefEditorId == request.UserId;
+            IsAssigned = journal.ChiefEditorId == request.UserId
         };
     }
 }
