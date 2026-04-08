@@ -1,6 +1,7 @@
 ﻿using Blocks.Domain.Entities;
+using Review.Domain.Articles;
 
-namespace Review.Domain.Articles;
+namespace Review.Domain.Shared;
 
 public class Journal : Entity
 {

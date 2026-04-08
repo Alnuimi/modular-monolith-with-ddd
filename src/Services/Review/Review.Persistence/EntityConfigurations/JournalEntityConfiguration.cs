@@ -1,7 +1,7 @@
 ﻿using Blocks.Core.Constraints;
 using Blocks.EntityFramework.EntityConfigurations;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Review.Domain.Articles;
+using Review.Domain.Shared;
 
 namespace Review.Persistence.EntityConfigurations;
 
