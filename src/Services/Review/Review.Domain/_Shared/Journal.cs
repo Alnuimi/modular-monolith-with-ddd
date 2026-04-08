@@ -12,4 +12,6 @@ public class Journal : Entity
     public IReadOnlyList<Article> Articles => _articles.AsReadOnly();
     
     public IReadOnlyCollection<ReviewerSpecialization> Reviewers { get; set; } = new HashSet<ReviewerSpecialization>();
+
+    public void AddArticle(Article article) => _articles.Add(article);
 }
