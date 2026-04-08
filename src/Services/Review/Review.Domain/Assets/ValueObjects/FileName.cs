@@ -11,4 +11,9 @@ public class FileName : StringValueObject
         var assetName = asset.Name.Value.Replace("'", "").Replace(" ", "-");
         return new FileName($"{assetName}.{extension}");
     }
+
+    public static FileName Create(string name)
+    {
+        return new FileName(name);
+    }
 }
