@@ -19,6 +19,6 @@ public class SubmissionDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(SubmissionDbContext).Assembly);
-        // base.OnModelCreating(modelBuilder);
+        base.OnModelCreating(modelBuilder);
     }
 }

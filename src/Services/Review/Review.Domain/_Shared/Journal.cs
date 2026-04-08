@@ -1,0 +1,17 @@
+﻿using Blocks.Domain.Entities;
+using Review.Domain.Articles;
+
+namespace Review.Domain.Shared;
+
+public class Journal : Entity
+{
+    public required string Name { get; set; }
+    public required string Abbreviation { get; set; }
+    private readonly List<Article> _articles = new();
+    
+    public IReadOnlyList<Article> Articles => _articles.AsReadOnly();
+    
+    public IReadOnlyCollection<ReviewerSpecialization> Reviewers { get; set; } = new HashSet<ReviewerSpecialization>();
+
+    public void AddArticle(Article article) => _articles.Add(article);
+}
