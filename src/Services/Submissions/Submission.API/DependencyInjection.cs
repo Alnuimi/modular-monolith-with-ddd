@@ -33,7 +33,7 @@ public static class DependencyInjection
             .AddEndpointsApiExplorer()           // Minimal API docs (Swagger)
             .AddSwaggerGen();                    // Swagger Setup
 
-        services.AddMongoFileStorage(configuration); // Module FileStorage
+        services.AddMongoFileStorageAsSingleton(configuration); // Module FileStorage
         
         // Clients Grpc
         var grpcOptions = configuration.GetSectionByTypeName<GrpcServicesOptions>();
