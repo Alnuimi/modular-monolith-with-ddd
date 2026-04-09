@@ -1,4 +1,5 @@
 ﻿using Articles.Abstractions.Events.Dtos;
+using FileStorage.Contracts;
 using Review.Domain.Assets.Enums;
 using Review.Domain.Assets.ValueObjects;
 
@@ -18,8 +19,16 @@ public partial class Asset
             Name = AssetName.FromAssetType(type),
             State = AssetState.Uploaded,
             Type = type.Id,
-            File = File.CreateFromSubmission(assetDto.File, type)
         };
         return asset;
+    }
+
+    public  File CreateFile(FileMetadata fileMetadata, AssetTypeDefinition assetType)
+    {
+        File = File.Create(fileMetadata, asset: this, assetType);
+        
+        State = AssetState.Uploaded;
+
+        return File;
     }
 }

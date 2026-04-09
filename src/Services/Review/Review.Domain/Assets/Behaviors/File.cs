@@ -1,4 +1,5 @@
 ﻿using Articles.Abstractions.Events.Dtos;
+using FileStorage.Contracts;
 using Review.Domain.Assets.ValueObjects;
 
 namespace Review.Domain.Assets;
@@ -7,16 +8,18 @@ public partial class File
 {
     private File(){}
 
-    internal static File CreateFromSubmission(FileDto fileDto, AssetTypeDefinition assetType)
+    internal static File Create(FileMetadata fileMetadata, Asset asset, AssetTypeDefinition assetType)
     {
-        var extension = FileExtension.FromFileName(fileDto.OriginalName, assetType);
+        var fileName = System.IO.Path.GetFileName(fileMetadata.StoragePath);
+        var extension = FileExtension.FromFileName(fileName, assetType);
+
         var file = new File()
         {
-            Name = FileName.Create(fileDto.Name),
+            Name = FileName.FromAsset(asset, extension),
             Extension = extension,
-            OriginalName = fileDto.OriginalName,
-            Size =  fileDto.Size,
-            FileServerId = fileDto.FileServerId
+            OriginalName = fileName,
+            Size = fileMetadata.FileSize,
+            FileServerId = fileMetadata.FileId
         };
         
         return file;
