@@ -17,4 +17,13 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\FileStorage\FileStorage.MongoGridFS\FileStorage.MongoGridFS.csproj" />
+    <ProjectReference Include="..\Review.Application\Review.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="FileStorage\" />
+  </ItemGroup>
+
 </Project>

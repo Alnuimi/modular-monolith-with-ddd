@@ -2,8 +2,10 @@
 using Articles.Abstractions.Events.Dtos;
 using Blocks.Domain;
 using Blocks.Exceptions;
+using FileStorage.Contracts;
 using Mapster;
 using MassTransit;
+using Review.Application.Features.FileStorage;
 using Review.Domain.Assets;
 using Review.Domain.Shared;
 using Review.Persistence.Repositories;
@@ -15,7 +17,10 @@ public sealed class ArticleApprovedForReviewEventHandler(
     ArticleRepository _articleRepository,
     Repository<Journal> _journalRepository,
     Repository<Person> _personRepository,
-    AssetTypeDefinitionRepository _assetTypeDefinitionRepository) : IConsumer<ArticleApprovedForReviewEvent>
+    AssetTypeDefinitionRepository _assetTypeDefinitionRepository,
+    IFileService _fileService,
+    FileServiceFactory _fileServiceFactory)
+     : IConsumer<ArticleApprovedForReviewEvent>
 {
     public async Task Consume(ConsumeContext<ArticleApprovedForReviewEvent> context)
     {
@@ -35,7 +40,7 @@ public sealed class ArticleApprovedForReviewEventHandler(
          await _dbContext.SaveChangesAsync(context.CancellationToken);
     }
 
-    private async  Task<IEnumerable<Asset>> CreateAssets(List<AssetDto> assetDtos, int articleId)
+    private async  Task<IEnumerable<Asset>> CreateAssets(List<AssetDto> assetDtos, int articleId, CancellationToken ct = default)
     {
         var assets = new List<Asset>();
         foreach (var assetDto in assetDtos)
@@ -44,6 +49,15 @@ public sealed class ArticleApprovedForReviewEventHandler(
             var asset = Asset.CreateFromSubmission(assetDto, assetTypeDefinition, articleId);
             
             // todo - download the files from submission upload to review
+
+            var submissionFileService = _fileServiceFactory(FileStorageType.Submission);
+            var (fileStream, fileMetadata) = await submissionFileService.DownloadFileAsync(asset.File.FileServerId, ct);
+
+            var fileUploadRequest = new FileUploadRequest(fileMetadata.StoragePath, fileMetadata.FileName, fileMetadata.ContentType, fileMetadata.FileSize);
+            fileMetadata = await _fileService.UploadFileAsync(fileUploadRequest, fileStream, ct: ct);
+            
+            asset.CreateFile(fileMetadata, assetTypeDefinition);
+            
             assets.Add(asset);
         }
 
