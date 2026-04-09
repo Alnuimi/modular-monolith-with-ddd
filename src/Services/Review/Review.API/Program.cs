@@ -1,18 +1,37 @@
+using Review.API;
+using Review.Application;
+using Review.Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+#region Add Services
+
+builder.Services
+    .AddApiServices(builder.Configuration)
+    .AddApplicationServices(builder.Configuration)
+    .AddPersistenceServices(builder.Configuration);
+
+#endregion
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+#region Use Services
+
+app
+    .UseSwagger()
+    .UseSwaggerUI()
+    .UseRouting();
+
+// app.MapAllEndpoints();
+
+// todo migrate - create the first migration
+//
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    // todo seed test data
 }
+#endregion
 
-app.UseHttpsRedirection();
 
 app.Run();
 
