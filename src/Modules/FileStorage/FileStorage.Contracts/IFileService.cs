@@ -2,15 +2,16 @@
 
 namespace FileStorage.Contracts;
 
+
+public interface IFileService<TFileStorageOptions> : IFileService
+where TFileStorageOptions : IFileStorageOptions ;
+
 public interface IFileService
 {
-    Task<UploadResponse> UploadFileAsync(
-        string filePath,
-        IFormFile file,
-        bool overwrite = false,
-        Dictionary<string, string>? tags = null);
+    Task<FileMetadata> UploadFileAsync(string storagePath, IFormFile file, bool overwrite = false, Dictionary<string, string>? tags = null, CancellationToken ct = default);
 
-    Task<(Stream FileStream, string ContentType)> DownloadFileAsync(string fileId);
+    Task<FileMetadata> UploadFileAsync(FileUploadRequest request, Stream stream, bool overwrite = false, Dictionary<string, string>? tags = null, CancellationToken ct = default);
+    Task<(Stream FileStream, FileMetadata FileMetadata)> DownloadFileAsync(string fileId, CancellationToken ct = default);
     
-    Task<bool> TryDeleteFileAsync(string fileId);
+    Task<bool> TryDeleteFileAsync(string fileId, CancellationToken ct = default);
 }

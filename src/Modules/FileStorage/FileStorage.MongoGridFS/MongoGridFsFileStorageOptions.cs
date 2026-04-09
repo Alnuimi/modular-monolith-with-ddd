@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using FileStorage.Contracts;
 
 namespace FileStorage.MongoGridFS;
 
-public sealed class MongoGridFsFileStorageOptions
+public class MongoGridFsFileStorageOptions : IFileStorageOptions 
 {
     [Required]
     public string ConnectionStringName { get; init; } = default!;
