@@ -1,3 +1,4 @@
+using Carter;
 using Review.API;
 using Review.Application;
 using Review.Persistence;
@@ -5,6 +6,9 @@ using Review.Persistence;
 var builder = WebApplication.CreateBuilder(args);
 
 #region Add Services
+
+builder.Services
+    .ConfigureApiOptions(builder.Configuration);
 
 builder.Services
     .AddApiServices(builder.Configuration)
@@ -20,9 +24,11 @@ var app = builder.Build();
 app
     .UseSwagger()
     .UseSwaggerUI()
-    .UseRouting();
+    .UseRouting()
+    .UseAuthentication()
+    .UseAuthorization();
 
-// app.MapAllEndpoints();
+app.MapCarter();
 
 // todo migrate - create the first migration
 //

@@ -8,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 #region Add Services
 
 builder.Services
+    .ConfigureApiOptions(builder.Configuration);
+
+builder.Services
     .AddApiServices(builder.Configuration)
     .AddApplicationServices(builder.Configuration)
     .AddPersistenceServices(builder.Configuration);
