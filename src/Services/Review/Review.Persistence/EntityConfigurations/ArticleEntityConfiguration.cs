@@ -36,6 +36,18 @@ internal sealed class ArticleEntityConfiguration : EntityConfiguration<Article>
                     .IsRequired()
                     .OnDelete(DeleteBehavior.Cascade);
 
+                builder.HasMany(a => a.Actors)
+                    .WithOne(a => a.Article)
+                    .HasForeignKey(e => e.ArticleId)
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                builder.HasMany(a => a.Invitations)
+                    .WithOne()
+                    .HasForeignKey(e => e.ArticleId)
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Cascade);
+
                 builder.HasOne(a => a.SubmittedBy).WithMany()
                     .HasForeignKey(a => a.SubmittedById)
                     .HasPrincipalKey(a => a.Id)
