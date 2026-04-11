@@ -5,6 +5,7 @@ using Review.Domain.Articles.Events;
 using Review.Domain.Assets;
 using Review.Domain.Invitations;
 using Review.Domain.Invitations.ValueObjects;
+using Review.Domain.Reviewers;
 
 namespace Review.Domain.Articles;
 

@@ -1,5 +1,6 @@
 ﻿using Blocks.Domain.Entities;
 using Review.Domain.Articles;
+using Review.Domain.Reviewers;
 
 namespace Review.Domain.Shared;
 

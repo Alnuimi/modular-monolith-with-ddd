@@ -2,6 +2,7 @@
 using Review.Domain.Articles;
 using Review.Domain.Assets;
 using Review.Domain.Invitations;
+using Review.Domain.Reviewers;
 using Review.Domain.Shared;
 
 namespace Review.Persistence;

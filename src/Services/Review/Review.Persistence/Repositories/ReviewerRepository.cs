@@ -1,6 +1,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
-using Review.Domain.Articles;
+using Review.Domain.Reviewers;
 
 namespace Review.Persistence.Repositories;
 

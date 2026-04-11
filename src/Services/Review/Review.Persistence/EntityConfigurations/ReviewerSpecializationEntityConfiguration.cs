@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Review.Domain.Articles;
+using Review.Domain.Reviewers;
 
 namespace Review.Persistence.EntityConfigurations;
 
