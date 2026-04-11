@@ -1,9 +1,10 @@
 ﻿using Blocks.EntityFramework;
+using Blocks.MediatR.Messaging;
 
 namespace Submission.Application.Features.AssignAuthor;
 
 internal sealed class AssignAuthorCommandHandler(ArticleRepository _articleRepository)
-    : IRequestHandler<AssignAuthorCommand, IdResponse>
+    : ICommandHandler<AssignAuthorCommand, IdResponse>
 {
     public async Task<IdResponse> Handle(AssignAuthorCommand command, CancellationToken cancellationToken)
     {

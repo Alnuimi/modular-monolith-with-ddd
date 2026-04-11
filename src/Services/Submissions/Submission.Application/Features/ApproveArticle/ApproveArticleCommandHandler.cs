@@ -1,6 +1,7 @@
 ﻿using Auth.Grpc;
 using Blocks.EntityFramework;
 using Blocks.Exceptions;
+using Blocks.MediatR.Messaging;
 using Grpc.Core;
 using Journals.Grpc;
 
@@ -10,7 +11,7 @@ internal sealed class ApproveArticleCommandHandler(
     ArticleRepository _articleRepository,
     PersonRepository _personRepository,
     IPersonService _personClient,
-    IJournalService _journalService) : IRequestHandler<ApproveArticleCommand, IdResponse>
+    IJournalService _journalService) : ICommandHandler<ApproveArticleCommand, IdResponse>
 {
     public async Task<IdResponse> Handle(ApproveArticleCommand command, CancellationToken ct)
     {

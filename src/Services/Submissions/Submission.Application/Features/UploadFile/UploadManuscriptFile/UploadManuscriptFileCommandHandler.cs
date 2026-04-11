@@ -1,4 +1,5 @@
 ﻿using Blocks.EntityFramework;
+using Blocks.MediatR.Messaging;
 using FileStorage.Contracts;
 using Submission.Persistence;
 
@@ -8,7 +9,7 @@ internal sealed class UploadManuscriptFileCommandHandler(
     ArticleRepository _articleRepository,
     AssetTypeDefinitionRepository _assetTypeRepository,
     IFileService _fileService)
-    : IRequestHandler<UploadManuscriptFileCommand, IdResponse>
+    : ICommandHandler<UploadManuscriptFileCommand, IdResponse>
 {
     public async Task<IdResponse> Handle(UploadManuscriptFileCommand command, CancellationToken cancellationToken)
     {

@@ -1,11 +1,12 @@
-﻿using FluentValidation;
+﻿using Blocks.MediatR.Messaging;
+using FluentValidation;
 using MediatR;
 
 namespace Blocks.MediatR.Behaviors;
 
 public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> validators)
     : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : IRequest<TResponse>
+    where TRequest : IBaseCommand
 {
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
