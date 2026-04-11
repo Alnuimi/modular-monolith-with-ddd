@@ -13,6 +13,7 @@ using FileStorage.MongoGridFS;
 using Microsoft.AspNetCore.Http.Json;
 using Review.API.FileStorage;
 using Review.Application.Features.FileStorage;
+using Review.Application.Options;
 
 namespace Review.API;
 
@@ -23,6 +24,7 @@ public static class DependencyInjection
     {
         // use it for configuring the options
         services
+            .AddAndValidateOptions<AppUrlsOptions>(configuration)
             .AddAndValidateOptions<RabbitMqOptions>(configuration)
             .AddAndValidateOptions<SubmissionFileStorageOptions>(configuration)
             .AddAndValidateOptions<EmailOptions>(configuration)
