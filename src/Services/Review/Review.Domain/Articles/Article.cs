@@ -1,6 +1,7 @@
 ﻿using Articles.Abstractions.Enums;
 using Blocks.Domain.Entities;
 using Review.Domain.Assets;
+using Review.Domain.Invitations;
 using Review.Domain.Shared;
 
 namespace Review.Domain.Articles;
@@ -21,4 +22,7 @@ public partial class Article : AggregateRoot
 
     private readonly List<Asset> _assets = new();
     public IReadOnlyList<Asset> Assets => _assets.AsReadOnly();
+
+      private readonly List<ReviewInvitation> _invitations = new();
+    public IReadOnlyList<ReviewInvitation> Invitations => _invitations.AsReadOnly();
 }

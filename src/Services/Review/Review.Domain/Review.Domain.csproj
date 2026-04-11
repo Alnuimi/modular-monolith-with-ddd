@@ -13,4 +13,12 @@
     <ProjectReference Include="..\..\..\Modules\FileStorage\FileStorage.Contracts\FileStorage.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Articles\Events\" />
+    <Folder Include="Invitations\" />
+    <Folder Include="Invitations\Enums\" />
+    <Folder Include="Invitations\ValueObjects\" />
+    <Folder Include="_Shared\Enums\" />
+  </ItemGroup>
+
 </Project>

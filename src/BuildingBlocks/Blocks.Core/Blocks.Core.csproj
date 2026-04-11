@@ -16,5 +16,8 @@
     <ItemGroup>
       <ProjectReference Include="..\Blocks.Exceptions\Blocks.Exceptions.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Security\" />
+    </ItemGroup>
 
 </Project>
