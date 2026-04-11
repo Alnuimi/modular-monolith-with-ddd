@@ -4,7 +4,7 @@ using Review.Domain.Articles;
 
 namespace Review.Persistence.Repositories;
 
-public sealed class ReivewerRepository(ReviewDbContext dbContext)
+public sealed class ReviewerRepository(ReviewDbContext dbContext)
     : Repository<Reviewer>(dbContext)
 {
     public async Task<Reviewer?> GetByUserIdAsync(int userId, CancellationToken ct = default)
