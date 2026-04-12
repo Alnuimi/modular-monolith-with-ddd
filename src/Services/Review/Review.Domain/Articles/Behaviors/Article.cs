@@ -1,6 +1,6 @@
 ﻿using Articles.Abstractions;
 using Articles.Abstractions.Enums;
-using Articles.Abstractions.Events.Dtos;
+using Articles.IntegrationEvents.Contracts.Dtos;
 using Blocks.Domain;
 using Review.Domain.Articles.Events;
 using Review.Domain.Assets;

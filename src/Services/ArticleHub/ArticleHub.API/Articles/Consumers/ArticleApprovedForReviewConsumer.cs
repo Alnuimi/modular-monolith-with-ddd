@@ -1,7 +1,7 @@
 using ArticleHub.Domain.Articles;
 using ArticleHub.Persistence;
-using Articles.Abstractions.Events;
-using Articles.Abstractions.Events.Dtos;
+using Articles.IntegrationEvents.Contracts;
+using Articles.IntegrationEvents.Contracts.Dtos;
 using Blocks.Core.Mapster;
 using Blocks.Exceptions;
 using Mapster;

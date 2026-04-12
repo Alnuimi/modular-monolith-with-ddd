@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Blocks.Domain\Blocks.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Events\" />
+  </ItemGroup>
+
 </Project>
