@@ -89,6 +89,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArticleHub.Domain", "Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArticleHub.API", "Services\ArticleHub\ArticleHub.API\ArticleHub.API.csproj", "{04ED18B8-DA77-4FB3-A787-0CA55C4F4ED7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Articles.IntegrationEvents.Contracts", "BuildingBlocks\Articles.IntegrationEvents.Contracts\Articles.IntegrationEvents.Contracts.csproj", "{44FF894E-937C-470C-A513-AC2B2AF0FDA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -495,6 +497,18 @@ Global
 		{04ED18B8-DA77-4FB3-A787-0CA55C4F4ED7}.Release|x64.Build.0 = Release|Any CPU
 		{04ED18B8-DA77-4FB3-A787-0CA55C4F4ED7}.Release|x86.ActiveCfg = Release|Any CPU
 		{04ED18B8-DA77-4FB3-A787-0CA55C4F4ED7}.Release|x86.Build.0 = Release|Any CPU
+		{44FF894E-937C-470C-A513-AC2B2AF0FDA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44FF894E-937C-470C-A513-AC2B2AF0FDA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44FF894E-937C-470C-A513-AC2B2AF0FDA6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{44FF894E-937C-470C-A513-AC2B2AF0FDA6}.Debug|x64.Build.0 = Debug|Any CPU
+		{44FF894E-937C-470C-A513-AC2B2AF0FDA6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{44FF894E-937C-470C-A513-AC2B2AF0FDA6}.Debug|x86.Build.0 = Debug|Any CPU
+		{44FF894E-937C-470C-A513-AC2B2AF0FDA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44FF894E-937C-470C-A513-AC2B2AF0FDA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44FF894E-937C-470C-A513-AC2B2AF0FDA6}.Release|x64.ActiveCfg = Release|Any CPU
+		{44FF894E-937C-470C-A513-AC2B2AF0FDA6}.Release|x64.Build.0 = Release|Any CPU
+		{44FF894E-937C-470C-A513-AC2B2AF0FDA6}.Release|x86.ActiveCfg = Release|Any CPU
+		{44FF894E-937C-470C-A513-AC2B2AF0FDA6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -540,5 +554,6 @@ Global
 		{5FD09CB6-3308-4217-B24E-E8E8C2134CAB} = {79308485-7A87-9984-5211-E5AEAC8AB73E}
 		{FC112415-CA38-4511-901E-84372408C904} = {79308485-7A87-9984-5211-E5AEAC8AB73E}
 		{04ED18B8-DA77-4FB3-A787-0CA55C4F4ED7} = {79308485-7A87-9984-5211-E5AEAC8AB73E}
+		{44FF894E-937C-470C-A513-AC2B2AF0FDA6} = {7266C4A9-E384-DC00-0EB6-47F6002CFBA7}
 	EndGlobalSection
 EndGlobal
