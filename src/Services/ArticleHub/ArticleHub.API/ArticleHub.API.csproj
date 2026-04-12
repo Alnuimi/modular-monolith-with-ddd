@@ -7,17 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Carter" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Articles\" />
     <Folder Include="Articles\Consumers\" />
+    <Folder Include="Articles\SearchArticles\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\Articles.Abstractions\Articles.Abstractions.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Articles.IntegrationEvents.Contracts\Articles.IntegrationEvents.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Articles.Security\Articles.Security.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Blocks.AspNetCore\Blocks.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Blocks.Messaging\Blocks.Messaging.csproj" />
     <ProjectReference Include="..\ArticleHub.Persistence\ArticleHub.Persistence.csproj" />
   </ItemGroup>
