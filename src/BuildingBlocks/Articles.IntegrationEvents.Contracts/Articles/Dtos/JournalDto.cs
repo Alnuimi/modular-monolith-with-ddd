@@ -1,4 +1,4 @@
-﻿namespace Articles.Abstractions.Events.Dtos;
+﻿namespace Articles.IntegrationEvents.Contracts.Dtos;
 
 public sealed record JournalDto(
     int Id,

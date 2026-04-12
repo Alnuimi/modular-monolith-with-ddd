@@ -1,6 +1,6 @@
 ﻿using Articles.Abstractions.Enums;
 
-namespace Articles.Abstractions.Events.Dtos;
+namespace Articles.IntegrationEvents.Contracts.Dtos;
 
 public sealed record AssetDto(
     int Id,

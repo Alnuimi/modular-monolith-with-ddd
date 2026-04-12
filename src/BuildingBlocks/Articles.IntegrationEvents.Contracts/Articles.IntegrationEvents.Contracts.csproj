@@ -7,11 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Blocks.Domain\Blocks.Domain.csproj" />
+    <Folder Include="Articles\" />
+    <Folder Include="Articles\Dtos\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Events\" />
+    <ProjectReference Include="..\Articles.Abstractions\Articles.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
