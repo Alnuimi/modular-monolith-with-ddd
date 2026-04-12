@@ -9,6 +9,11 @@ public sealed class ReviewerRepository(ReviewDbContext dbContext)
 {
     public async Task<Reviewer?> GetByUserIdAsync(int userId, CancellationToken ct = default)
     {
-        return await Query().FirstOrDefaultAsync(r => r.UserId == userId, ct);
+        return await Entity.FirstOrDefaultAsync(r => r.UserId == userId, ct);
+    }
+
+    public async Task<Reviewer?> GetByEmailAsync(string email, CancellationToken ct = default)
+    {
+        return await Entity.SingleOrDefaultAsync(r => r.Email.Value.ToLower() == email.ToLower(), ct);
     }
 }

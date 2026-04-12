@@ -11,7 +11,7 @@ namespace Review.Application.Features.Invitations.InviteReviewer;
 internal sealed class InviteReviewerCommandHandler(
     ReviewDbContext _dbContext,
     ArticleRepository _articleRepository,
-    ReivewerRepository _reviewerRepository,
+    ReviewerRepository _reviewerRepository,
     IOptions<AppUrlsOptions> _appUrlsOptions,
     IOptions<EmailOptions> _emailOptions,
     IEmailService _emailService,

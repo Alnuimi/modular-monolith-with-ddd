@@ -7,4 +7,7 @@ public static class EnumerableExtensions
     
     public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable)
         => enumerable == null || !enumerable.Any();
+    
+    public static bool IsNotNullOrEmpty<T>(this IEnumerable<T> enumerable)
+        => !enumerable.IsNullOrEmpty();
 }

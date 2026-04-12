@@ -20,6 +20,7 @@
   <ItemGroup>
     <Folder Include="Features\FileStorage\" />
     <Folder Include="Features\Invitations\" />
+    <Folder Include="Features\Invitations\AcceptInvitation\" />
     <Folder Include="Features\Invitations\InviteReviewer\" />
     <Folder Include="Features\_Shared\" />
     <Folder Include="Options\" />
