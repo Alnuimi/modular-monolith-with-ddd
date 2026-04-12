@@ -6,7 +6,7 @@ namespace Submission.Application.Features.CreateArticle
         int JournalId,
         string Title,
         string Scope,
-        ArticleType Type) : ArticleCommand,IRequest<IdResponse>
+        ArticleType Type) : ArticleCommand
     {
         public override ArticleActionType ActionType => ArticleActionType.Create;
     }

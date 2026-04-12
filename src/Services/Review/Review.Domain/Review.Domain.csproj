@@ -8,8 +8,21 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\Articles.Abstractions\Articles.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Articles.Grpc.Contracts\Articles.Grpc.Contracts.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Blocks.Core\Blocks.Core.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Blocks.Domain\Blocks.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Modules\FileStorage\FileStorage.Contracts\FileStorage.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Articles\Events\" />
+    <Folder Include="Invitations\" />
+    <Folder Include="Invitations\Behaviors\" />
+    <Folder Include="Invitations\Enums\" />
+    <Folder Include="Invitations\ValueObjects\" />
+    <Folder Include="Reviewers\Behaviors\" />
+    <Folder Include="Reviewers\Events\" />
+    <Folder Include="_Shared\Enums\" />
   </ItemGroup>
 
 </Project>

@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Blocks.Domain\Blocks.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Messaging\" />
+  </ItemGroup>
+
 </Project>

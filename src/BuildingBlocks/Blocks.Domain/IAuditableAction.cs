@@ -2,7 +2,7 @@
 
 public interface IAuditableAction
 {
-    public DateTime CreatedOn => DateTime.Now;
+    public DateTime CreatedOn => DateTime.UtcNow;
     
     public int CreatedById { get; set; }
 }

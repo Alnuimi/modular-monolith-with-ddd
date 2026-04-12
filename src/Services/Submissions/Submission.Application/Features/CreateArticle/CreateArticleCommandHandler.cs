@@ -1,10 +1,11 @@
 ﻿using Blocks.EntityFramework;
+using Blocks.MediatR.Messaging;
 using Microsoft.EntityFrameworkCore;
 
 
 namespace Submission.Application.Features.CreateArticle
 {
-    internal sealed class CreateArticleCommandHandler(Repository<Journal> _journalRepository) : IRequestHandler<CreateArticleCommand, IdResponse>
+    internal sealed class CreateArticleCommandHandler(Repository<Journal> _journalRepository) : ICommandHandler<CreateArticleCommand, IdResponse>
     {
         public async Task<IdResponse> Handle(CreateArticleCommand command, CancellationToken cancellationToken)
         {

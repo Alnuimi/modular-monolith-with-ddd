@@ -1,4 +1,5 @@
 ﻿using Blocks.EntityFramework;
+using Blocks.MediatR.Messaging;
 using FileStorage.Contracts;
 using Submission.Persistence;
 
@@ -8,7 +9,7 @@ internal sealed class UploadManuscriptFileCommandHandler(
     ArticleRepository _articleRepository,
     AssetTypeDefinitionRepository _assetTypeRepository,
     IFileService _fileService)
-    : IRequestHandler<UploadManuscriptFileCommand, IdResponse>
+    : ICommandHandler<UploadManuscriptFileCommand, IdResponse>
 {
     public async Task<IdResponse> Handle(UploadManuscriptFileCommand command, CancellationToken cancellationToken)
     {
@@ -24,11 +25,8 @@ internal sealed class UploadManuscriptFileCommandHandler(
             asset = article.CreateAsset(assetType);
         
         // todo - upload the file
-        var filePath = asset.GenerateStorageFilePath(command.File.FileName);
-        var uploadResponse = await _fileService.UploadFileAsync(
-            filePath: filePath,
-            file: command.File,
-            overwrite: true,
+        var storagePath = asset.GenerateStorageFilePath(command.File.FileName);
+        var fileMetadata = await _fileService.UploadFileAsync(storagePath, command.File, overwrite: true,
             tags: new Dictionary<string, string>
             {
                 { "entity", nameof(Asset) },
@@ -38,13 +36,13 @@ internal sealed class UploadManuscriptFileCommandHandler(
 
         try
         {
-            asset.CreateFile(uploadResponse, assetType);
+            asset.CreateFile(fileMetadata, assetType);
 
             await _articleRepository.SaveChangesAsync(cancellationToken);
         }
         catch (Exception)
         {
-            await _fileService.TryDeleteFileAsync(uploadResponse.FileId);
+            await _fileService.TryDeleteFileAsync(fileMetadata.FileId);
             throw;
         }
 
