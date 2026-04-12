@@ -17,6 +17,7 @@
       <ProjectReference Include="..\Blocks.Exceptions\Blocks.Exceptions.csproj" />
     </ItemGroup>
     <ItemGroup>
+      <Folder Include="GraphQL\" />
       <Folder Include="Security\" />
     </ItemGroup>
 

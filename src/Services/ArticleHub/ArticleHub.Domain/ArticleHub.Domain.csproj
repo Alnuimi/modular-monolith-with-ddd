@@ -10,4 +10,8 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\Articles.Abstractions\Articles.Abstractions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+  </ItemGroup>
+
 </Project>
