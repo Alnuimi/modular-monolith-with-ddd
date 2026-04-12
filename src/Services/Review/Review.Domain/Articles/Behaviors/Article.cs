@@ -1,4 +1,5 @@
 ﻿using Articles.Abstractions;
+using Articles.Abstractions.Enums;
 using Articles.Abstractions.Events.Dtos;
 using Blocks.Domain;
 using Review.Domain.Articles.Events;
@@ -69,5 +70,19 @@ public partial class Article
         _invitations.Add(invitation);
 
         return invitation;
+    }
+
+    public void AssignReviewer(Reviewer reviewer, IArticleAction action)
+    {
+        if(_actors.Exists(a => a.PersonId == reviewer.Id && a.Role == UserRoleType.REV))
+        {
+            throw new DomainException($"Reviewer {reviewer.Email} is already assigned to this article.");
+        }
+
+        reviewer.AddSepcialization(new ReviewerSpecialization { ReviewerId = reviewer.Id, JournalId = this.JournalId });
+
+        _actors.Add(new ArticleActor() {PersonId = reviewer.Id, Role = UserRoleType.REV});
+
+        AddDomainEvent(new ReviewerAssigned(this, reviewer, action));
     }
 }

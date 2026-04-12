@@ -7,7 +7,7 @@ using Review.Domain.Shared.ValueObjects;
 
 namespace Review.Domain.Invitations;
 
-public class ReviewInvitation : AggregateRoot
+public partial class ReviewInvitation : AggregateRoot
 {   
     public required int ArticleId { get; init; }
     public int? UserId { get; init; }
