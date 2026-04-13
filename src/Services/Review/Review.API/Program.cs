@@ -1,3 +1,4 @@
+using Blocks.AspNetCore.Filters;
 using Blocks.AspNetCore.Middleware;
 using Carter;
 using Review.API;
@@ -29,8 +30,8 @@ app
     .UseMiddleware<GlobalExceptionMiddleware>()
     .UseAuthentication()
     .UseAuthorization();
-    
-var apiGroup = app.MapGroup("/api");
+
+var apiGroup = app.MapGroup("/api").AddEndpointFilter<AssignUserIdFilter>();
 apiGroup.MapCarter();
 
 

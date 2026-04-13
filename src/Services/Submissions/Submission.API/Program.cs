@@ -1,3 +1,4 @@
+using Blocks.AspNetCore.Filters;
 using Blocks.AspNetCore.Middleware;
 using Submission.API;
 using Submission.API.Endpoints;
@@ -28,7 +29,7 @@ app
     .UseRouting()
     .UseMiddleware<GlobalExceptionMiddleware>();
 
-var apiGroup = app.MapGroup("/api");
+var apiGroup = app.MapGroup("/api").AddEndpointFilter<AssignUserIdFilter>();
 apiGroup.MapAllEndpoints();
 
 // todo migrate - create the first migration
