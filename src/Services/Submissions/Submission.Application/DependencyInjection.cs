@@ -20,7 +20,7 @@ public static class DependencyInjection
             {
                 config.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
                 config.AddOpenBehavior(typeof(ValidationBehavior<,>));
-                config.AddOpenBehavior(typeof(SetUserIdBehavior<,>));
+                config.AddOpenBehavior(typeof(AssignUserIdBehavior<,>));
             })
             .AddMassTransitWithRabbitMq(configuration, Assembly.GetExecutingAssembly());
             return services;

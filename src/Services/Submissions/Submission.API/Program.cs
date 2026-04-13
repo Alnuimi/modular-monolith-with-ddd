@@ -27,7 +27,9 @@ app
     .UseSwagger()
     .UseSwaggerUI()
     .UseRouting()
-    .UseMiddleware<GlobalExceptionMiddleware>();
+    .UseMiddleware<GlobalExceptionMiddleware>()
+    .UseAuthentication()
+    .UseAuthorization();
 
 var apiGroup = app.MapGroup("/api").AddEndpointFilter<AssignUserIdFilter>();
 apiGroup.MapAllEndpoints();
