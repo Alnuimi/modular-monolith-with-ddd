@@ -1,3 +1,4 @@
+using Blocks.AspNetCore.Middleware;
 using Submission.API;
 using Submission.API.Endpoints;
 using Submission.Application;
@@ -24,7 +25,8 @@ var app = builder.Build();
 app
     .UseSwagger()
     .UseSwaggerUI()
-    .UseRouting();
+    .UseRouting()
+    .UseMiddleware<GlobalExceptionMiddleware>();
 
 app.MapAllEndpoints();
 

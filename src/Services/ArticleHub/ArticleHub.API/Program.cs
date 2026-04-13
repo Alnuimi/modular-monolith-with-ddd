@@ -1,12 +1,9 @@
 using ArticleHub.API;
 using ArticleHub.Persistence;
+using Blocks.AspNetCore.Middleware;
 using Carter;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 
 #region Add
 builder.Services
@@ -24,9 +21,9 @@ app
     .UseSwagger()
     .UseSwaggerUI()
     .UseRouting()
+    .UseMiddleware<GlobalExceptionMiddleware>()
     .UseAuthentication()
     .UseAuthorization();
-    // .UseMiddleware<GlobalExceptionMiddleware>() // todo-building 
     // .UseMiddleware<RequestContextMiddleware>()
     // .UseMiddleware<ResponseTimingMiddleware>();
 
