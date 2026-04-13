@@ -3,6 +3,7 @@ using FastEndpoints;
 using FastEndpoints.Swagger;
 using Journals.API;
 using Journals.Persistence;
+using Blocks.FastEndpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,8 +28,16 @@ app
     .UseHttpsRedirection()
     .UseRouting()
     .UseMiddleware<GlobalExceptionMiddleware>()
-    .UseFastEndpoints()
-    .UseSwaggerGen();
+    .UseFastEndpoints(config =>
+    {
+        config.Endpoints.Configurator = ed =>
+        {
+            ed.PreProcessor<AssignUserIdPreProcessor>(Order.Before);
+        };
+    })
+    .UseSwaggerGen()
+    .UseAuthentication()
+    .UseAuthorization();
    
 
 #endregion

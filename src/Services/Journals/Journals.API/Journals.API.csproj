@@ -31,6 +31,7 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\Blocks.AspNetCore\Blocks.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Blocks.Core\Blocks.Core.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Blocks.Exceptions\Blocks.Exceptions.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Blocks.FastEndpoints\Blocks.FastEndpoints.csproj" />
     <ProjectReference Include="..\Journals.Persistence\Journals.Persistence.csproj" />
   </ItemGroup>
 
