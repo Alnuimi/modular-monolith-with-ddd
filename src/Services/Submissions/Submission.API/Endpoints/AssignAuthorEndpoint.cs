@@ -10,7 +10,7 @@ public static class AssignAuthorEndpoint
 {
     public static void Map(this IEndpointRouteBuilder app)
     {
-        app.MapPut("api/articles/{articleId:int}/authors/{authorId:int}",
+        app.MapPut("/articles/{articleId:int}/authors/{authorId:int}",
                 async (int articleId, int authorId, AssignAuthorCommand command, ISender sender) =>
                 {
                     var response = await sender.Send(command with { ArticleId = articleId, AuthorId = authorId });

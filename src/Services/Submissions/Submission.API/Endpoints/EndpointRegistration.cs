@@ -15,6 +15,9 @@
             
             // POST api/articles/{articleId:int}/assets/manuscript:upload
             UploadManuscriptFileEndpoint.Map(app);
+
+            // POST api/articles/{articleId:int}:approve
+            ApproveArticleEndpoint.Map(app);
         
             return app;
         }

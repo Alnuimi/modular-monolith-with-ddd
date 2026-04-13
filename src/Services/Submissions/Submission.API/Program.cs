@@ -28,7 +28,8 @@ app
     .UseRouting()
     .UseMiddleware<GlobalExceptionMiddleware>();
 
-app.MapAllEndpoints();
+var apiGroup = app.MapGroup("/api");
+apiGroup.MapAllEndpoints();
 
 // todo migrate - create the first migration
 //

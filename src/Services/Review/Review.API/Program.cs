@@ -29,8 +29,10 @@ app
     .UseMiddleware<GlobalExceptionMiddleware>()
     .UseAuthentication()
     .UseAuthorization();
+    
+var apiGroup = app.MapGroup("/api");
+apiGroup.MapCarter();
 
-app.MapCarter();
 
 // todo migrate - create the first migration
 //

@@ -27,8 +27,8 @@ app
     // .UseMiddleware<RequestContextMiddleware>()
     // .UseMiddleware<ResponseTimingMiddleware>();
 
-var api = app.MapGroup("/api");
-api.MapCarter();
+var apiGroup = app.MapGroup("/api");
+apiGroup.MapCarter();
 
 #endregion
 
