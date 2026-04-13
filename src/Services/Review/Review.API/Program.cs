@@ -1,3 +1,4 @@
+using Blocks.AspNetCore.Middleware;
 using Carter;
 using Review.API;
 using Review.Application;
@@ -25,6 +26,7 @@ app
     .UseSwagger()
     .UseSwaggerUI()
     .UseRouting()
+    .UseMiddleware<GlobalExceptionMiddleware>()
     .UseAuthentication()
     .UseAuthorization();
 

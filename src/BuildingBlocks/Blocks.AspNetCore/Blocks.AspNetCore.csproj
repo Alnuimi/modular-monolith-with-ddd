@@ -12,4 +12,12 @@
       <PackageReference Include="Grpc.Net.Client" Version="2.71.0" />
       <PackageReference Include="protobuf-net.Grpc" Version="1.2.2" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Middleware\" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Blocks.Core\Blocks.Core.csproj" />
+      <ProjectReference Include="..\Blocks.Domain\Blocks.Domain.csproj" />
+      <ProjectReference Include="..\Blocks.Exceptions\Blocks.Exceptions.csproj" />
+    </ItemGroup>
 </Project>

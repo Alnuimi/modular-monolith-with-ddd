@@ -1,6 +1,7 @@
 using Auth.API;
 using Auth.Application;
 using Auth.Persistence;
+using Blocks.AspNetCore.Middleware;
 using FastEndpoints;
 using FastEndpoints.Swagger;
 
@@ -27,6 +28,7 @@ app
     .UseSwaggerUI()
     .UseHttpsRedirection()
     .UseRouting()
+    .UseMiddleware<GlobalExceptionMiddleware>()
     .UseFastEndpoints()
     .UseSwaggerGen();
 

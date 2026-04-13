@@ -1,3 +1,4 @@
+using Blocks.AspNetCore.Middleware;
 using FastEndpoints;
 using FastEndpoints.Swagger;
 using Journals.API;
@@ -25,6 +26,7 @@ app
     .UseSwaggerUI()
     .UseHttpsRedirection()
     .UseRouting()
+    .UseMiddleware<GlobalExceptionMiddleware>()
     .UseFastEndpoints()
     .UseSwaggerGen();
    
