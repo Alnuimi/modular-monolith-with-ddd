@@ -43,6 +43,7 @@ public static class DependenciesInjection
         {
             options.ResponseCompressionLevel = CompressionLevel.Fastest;
             options.EnableDetailedErrors = true;
+            options.Interceptors.Add<AssignUserIdInterceptor>();
         });
         
         // Clients Grpc
