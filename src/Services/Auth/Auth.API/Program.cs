@@ -3,6 +3,7 @@ using Auth.API.Features.Persons;
 using Auth.Application;
 using Auth.Persistence;
 using Blocks.AspNetCore.Middleware;
+using Blocks.EntityFramework;
 using Blocks.FastEndpoints;
 using FastEndpoints;
 using FastEndpoints.Swagger;
@@ -22,7 +23,14 @@ builder.Services
 #endregion
 
 var app = builder.Build();
-
+#region InitData
+//insight - explain when is the best time to run the migration, integrate the migration in the CI pipeline
+app.Migrate<AuthDbContext>();
+if (app.Environment.IsDevelopment())
+{
+    // app.Services.SeedTestData();
+}
+#endregion
 #region Use
 
 app
