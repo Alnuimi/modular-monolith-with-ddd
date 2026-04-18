@@ -93,6 +93,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Articles.IntegrationEvents.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blocks.FastEndpoints", "BuildingBlocks\Blocks.FastEndpoints\Blocks.FastEndpoints.csproj", "{670A51E8-EBD7-4D61-9368-623D08D83E10}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{008DF552-1F58-4D02-BB8D-28F97838E369}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yaml = compose.yaml
+	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{34BB3069-D5D0-4046-ACAD-A2025ED7678F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -523,6 +530,12 @@ Global
 		{670A51E8-EBD7-4D61-9368-623D08D83E10}.Release|x64.Build.0 = Release|Any CPU
 		{670A51E8-EBD7-4D61-9368-623D08D83E10}.Release|x86.ActiveCfg = Release|Any CPU
 		{670A51E8-EBD7-4D61-9368-623D08D83E10}.Release|x86.Build.0 = Release|Any CPU
+		{34BB3069-D5D0-4046-ACAD-A2025ED7678F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34BB3069-D5D0-4046-ACAD-A2025ED7678F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{34BB3069-D5D0-4046-ACAD-A2025ED7678F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{34BB3069-D5D0-4046-ACAD-A2025ED7678F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34BB3069-D5D0-4046-ACAD-A2025ED7678F}.Release|x64.ActiveCfg = Release|Any CPU
+		{34BB3069-D5D0-4046-ACAD-A2025ED7678F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

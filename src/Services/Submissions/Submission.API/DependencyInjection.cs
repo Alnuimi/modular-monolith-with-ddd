@@ -2,7 +2,9 @@
 using Articles.Security;
 using Auth.Grpc;
 using Blocks.AspNetCore.Grpc;
+using Blocks.AspNetCore.Providers;
 using Blocks.Core.Extensions;
+using Blocks.Core.Security;
 using Blocks.Messaging;
 using FileStorage.MongoGridFS;
 using Journals.Grpc;
@@ -29,11 +31,20 @@ public static class DependencyInjection
     public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
     {
         services
-            .AddMemoryCache()                    // Basic Caching
-            .AddEndpointsApiExplorer()           // Minimal API docs (Swagger)
-            .AddSwaggerGen();                    // Swagger Setup
+            .AddMemoryCache()                           // Basic Caching
+            .AddHttpContextAccessor()                   // For accessing HTTP context
+            .AddEndpointsApiExplorer()                  // Minimal API docs (Swagger)
+            .AddSwaggerGen()                            // Swagger Setup
+            .AddJwtAuthentication(configuration)        // JWT Authentication
+            .AddAuthorization();                        // Authorization configuration
 
+        services
+            .AddScoped<IClaimsProvider, HttpContextProvider>()
+            .AddScoped<HttpContextProvider>();
+        
+        
         services.AddMongoFileStorageAsSingleton(configuration); // Module FileStorage
+        
         
         // Clients Grpc
         var grpcOptions = configuration.GetSectionByTypeName<GrpcServicesOptions>();

@@ -1,13 +1,17 @@
-﻿using System.Security.Claims;
+﻿using System.IO.Compression;
+using System.Security.Claims;
 using Articles.Security;
 using Auth.API.Features.Persons;
 using Auth.Domain.Users;
 using Auth.Persistence;
+using Blocks.AspNetCore.Providers;
 using Blocks.Core.Extensions;
+using Blocks.Core.Security;
 using EmailService.Smtp;
 using FastEndpoints;
 using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Identity;
+using ProtoBuf.Grpc.Server;
 
 namespace Auth.API;
 
@@ -29,12 +33,25 @@ public static class DependenciesInjection
             .SwaggerDocument()
             .AddEndpointsApiExplorer()
             .AddSwaggerGen()
-            .AddJwtIdentity(config);
+            .AddJwtIdentity(config)
+            .AddJwtAuthentication(config)
+            .AddAuthorization();
         
+        services
+            .AddScoped<IClaimsProvider, HttpContextProvider>()
+            .AddScoped<HttpContextProvider>();
+
         services.AddSmtpEmailService(config);
         
         // gRPC injection
         services.AddSingleton<GrpcTypeAdapterConfig>();
+
+        services.AddCodeFirstGrpc(options =>
+        {
+            options.ResponseCompressionLevel = CompressionLevel.Fastest;
+            options.EnableDetailedErrors = true;
+        });
+
         return services;
     }
 

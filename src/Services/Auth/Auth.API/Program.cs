@@ -1,7 +1,9 @@
 using Auth.API;
+using Auth.API.Features.Persons;
 using Auth.Application;
 using Auth.Persistence;
 using Blocks.AspNetCore.Middleware;
+using Blocks.FastEndpoints;
 using FastEndpoints;
 using FastEndpoints.Swagger;
 
@@ -24,15 +26,18 @@ var app = builder.Build();
 #region Use
 
 app
+    .UseMiddleware<GlobalExceptionMiddleware>()
     .UseSwagger()
     .UseSwaggerUI()
     .UseHttpsRedirection()
     .UseRouting()
-    .UseMiddleware<GlobalExceptionMiddleware>()
-    .UseFastEndpoints()
+    .UseAuthentication()
+    .UseAuthorization()
+    .UseCustomFastEndpoints()
     .UseSwaggerGen();
 
 
+app.MapGrpcService<PersonGrpcService>();
 #endregion
 
 app.Run();

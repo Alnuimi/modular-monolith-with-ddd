@@ -8,6 +8,8 @@ using Blocks.Core.Mapster;
 using Blocks.Messaging.MassTransit;
 using System.Reflection;
 using ArticleHub.Persistence;
+using Blocks.Core.Security;
+using Blocks.AspNetCore.Providers;
 
 namespace ArticleHub.API;
 
@@ -41,6 +43,11 @@ public static class DependencyInjection
             .AddMemoryCache()
             .AddMapsterConfigsFromCurrentAssembly()
             .AddMassTransitWithRabbitMq(configuration, Assembly.GetExecutingAssembly());
+
+        // http
+        services
+            .AddScoped<IClaimsProvider, HttpContextProvider>()
+            .AddScoped<HttpContextProvider>();
         return services;
     }
 }

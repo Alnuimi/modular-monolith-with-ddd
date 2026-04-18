@@ -1,7 +1,7 @@
 namespace ArticleHub.Domain.Dtos;
 
 public record JournalDto(
-    int Id
+    int Id,
     string Abbreviation,
     string Name
 );

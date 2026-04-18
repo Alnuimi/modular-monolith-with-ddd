@@ -1,10 +1,15 @@
 ﻿using System.IO.Compression;
+using System.Reflection;
 using System.Text.Json.Serialization;
 using Articles.Security;
 using Auth.Grpc;
 using Blocks.AspNetCore.Grpc;
+using Blocks.AspNetCore.Providers;
 using Blocks.Core.Extensions;
 using Blocks.Core.Mapster;
+using Blocks.Core.Security;
+using Blocks.Messaging;
+using Blocks.Messaging.MassTransit;
 using FastEndpoints;
 using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Http.Json;
@@ -19,6 +24,7 @@ public static class DependenciesInjection
         // use it for configuring the options
         services
             .AddAndValidateOptions<JwtOptions>(configuration)
+            .AddAndValidateOptions<RabbitMqOptions>(configuration)
             .Configure<JsonOptions>(opt =>
             {
                 opt.SerializerOptions.PropertyNameCaseInsensitive = true;
@@ -36,7 +42,11 @@ public static class DependenciesInjection
             .AddSwaggerGen()
             .AddJwtAuthentication(config)
             .AddMapsterConfigsFromCurrentAssembly()
-            .AddAuthorization();
+            .AddAuthorization()
+            .AddMassTransitWithRabbitMq(config, Assembly.GetExecutingAssembly());
+
+        services
+            .AddScoped<IClaimsProvider, HttpContextProvider>();
         
         // Server Grpc
         services.AddCodeFirstGrpc(options =>

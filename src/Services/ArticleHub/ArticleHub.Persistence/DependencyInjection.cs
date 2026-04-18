@@ -25,7 +25,7 @@ public static  class DependencyInjection
         {
             var graphQLClientOptions = new GraphQLHttpClientOptions
             {
-                EndPoint = new Uri(hasuraOption.Endpoint)
+                EndPoint = new Uri(new Uri(hasuraOption.Endpoint), "v1/graphql")
             };
 
             var jsonSerializerOptions = new JsonSerializerOptions

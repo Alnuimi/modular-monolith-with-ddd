@@ -2,8 +2,10 @@
 using Blocks.Core.Mapster;
 using Blocks.MediatR.Behaviors;
 using Blocks.Messaging.MassTransit;
+using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Review.Application.Features.Invitations.InviteReviewer;
 
 namespace Review.Application;
 
@@ -16,7 +18,7 @@ public static  class DependencyInjection
         services
         .AddMapsterConfigsFromCurrentAssembly()                                         // Scanning for mapping registrations in the current assembly                   
                                                                                        // .AddValidatorsFromCurrentAssemblyContaining()                                                   // Scanning for validators in the current assembly
-        // .AddValidatorsFromCurrentAssemblyContaining<InviteReviewerCommandValidator>() // Register Fluent valiators as transient 
+        .AddValidatorsFromAssemblyContaining<InviteReviewerCommandValidator>() // Register Fluent valiators as transient 
         .AddMediatR(config =>
         {
             config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());

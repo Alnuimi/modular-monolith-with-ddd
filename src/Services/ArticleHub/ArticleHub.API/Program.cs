@@ -18,10 +18,10 @@ var app = builder.Build();
 
 #region Use
 app
+    .UseMiddleware<GlobalExceptionMiddleware>()
     .UseSwagger()
     .UseSwaggerUI()
     .UseRouting()
-    .UseMiddleware<GlobalExceptionMiddleware>()
     .UseAuthentication()
     .UseAuthorization();
     // .UseMiddleware<RequestContextMiddleware>()

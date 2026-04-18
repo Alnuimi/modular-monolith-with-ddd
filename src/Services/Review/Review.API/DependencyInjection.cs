@@ -3,7 +3,9 @@ using System.Text.Json.Serialization;
 using Articles.Security;
 using Auth.Grpc;
 using Blocks.AspNetCore.Grpc;
+using Blocks.AspNetCore.Providers;
 using Blocks.Core.Extensions;
+using Blocks.Core.Security;
 using Blocks.Messaging;
 using Carter;
 using EmailService.Contracts;
@@ -26,7 +28,7 @@ public static class DependencyInjection
         services
             .AddAndValidateOptions<AppUrlsOptions>(configuration)
             .AddAndValidateOptions<RabbitMqOptions>(configuration)
-            .AddAndValidateOptions<SubmissionFileStorageOptions>(configuration)
+            // .AddAndValidateOptions<SubmissionFileStorageOptions>(configuration)
             .AddAndValidateOptions<EmailOptions>(configuration)
             .AddAndValidateOptions<GrpcServicesOptions>(configuration)
             .AddAndValidateOptions<JwtOptions>(configuration)
@@ -47,6 +49,9 @@ public static class DependencyInjection
             .AddJwtAuthentication(configuration) // JWT Authentication
             .AddAuthorization(); // Authorization policies
         
+        services 
+            .AddScoped<IClaimsProvider, HttpContextProvider>()
+            .AddScoped<HttpContextProvider>();
 
         // external services 
         services.AddMongoFileStorageAsSingleton(configuration);

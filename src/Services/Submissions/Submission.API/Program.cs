@@ -24,14 +24,14 @@ var app = builder.Build();
 #region Use Services
 
 app
+    .UseMiddleware<GlobalExceptionMiddleware>()
     .UseSwagger()
     .UseSwaggerUI()
     .UseRouting()
-    .UseMiddleware<GlobalExceptionMiddleware>()
     .UseAuthentication()
     .UseAuthorization();
 
-var apiGroup = app.MapGroup("/api").AddEndpointFilter<AssignUserIdFilter>();
+var apiGroup = app.MapGroup("/api");//.AddEndpointFilter<AssignUserIdFilter>();
 apiGroup.MapAllEndpoints();
 
 // todo migrate - create the first migration

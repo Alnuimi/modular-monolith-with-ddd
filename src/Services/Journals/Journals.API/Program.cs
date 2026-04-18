@@ -4,6 +4,7 @@ using FastEndpoints.Swagger;
 using Journals.API;
 using Journals.Persistence;
 using Blocks.FastEndpoints;
+using Journals.API.Features.Journals;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,23 +24,25 @@ var app = builder.Build();
 
 #region Use
 app
+    .UseMiddleware<GlobalExceptionMiddleware>()
     .UseSwagger()
     .UseSwaggerUI()
+    .UseRedis()
     .UseHttpsRedirection()
     .UseRouting()
-    .UseMiddleware<GlobalExceptionMiddleware>()
-    .UseFastEndpoints(config =>
-    {
-        config.Endpoints.Configurator = ed =>
-        {
-            ed.PreProcessor<AssignUserIdPreProcessor>(Order.Before);
-        };
-    })
-    .UseSwaggerGen()
     .UseAuthentication()
-    .UseAuthorization();
+    .UseAuthorization()
+    // .UseFastEndpoints(config =>
+    // {
+    //     config.Endpoints.Configurator = ed =>
+    //     {
+    //         ed.PreProcessor<AssignUserIdPreProcessor>(Order.Before);
+    //     };
+    // })
+    .UseCustomFastEndpoints()
+    .UseSwaggerGen();
    
 
 #endregion
-
+app.MapGrpcService<JournalGrpcService>();
 app.Run();

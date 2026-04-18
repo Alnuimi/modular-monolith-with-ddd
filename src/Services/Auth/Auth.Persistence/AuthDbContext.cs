@@ -10,10 +10,12 @@ public class AuthDbContext(DbContextOptions<AuthDbContext> options)
     : IdentityDbContext<User, Role, int>(options)
 {
     
+    public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
     public virtual DbSet<Person> Persons { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.ApplyConfigurationsFromAssembly(typeof(AuthDbContext).Assembly);
         base.OnModelCreating(builder);
+
+        builder.ApplyConfigurationsFromAssembly(typeof(AuthDbContext).Assembly);
     }
 }
