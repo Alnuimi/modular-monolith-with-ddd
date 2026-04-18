@@ -1,5 +1,6 @@
 using Blocks.AspNetCore.Filters;
 using Blocks.AspNetCore.Middleware;
+using Blocks.EntityFramework;
 using Submission.API;
 using Submission.API.Endpoints;
 using Submission.Application;
@@ -20,7 +21,14 @@ builder.Services
 #endregion
 
 var app = builder.Build();
-
+#region InitData
+//insight - explain when is the best time to run the migration, integrate the migration in the CI pipeline
+app.Migrate<SubmissionDbContext>();
+if (app.Environment.IsDevelopment())
+{
+    // app.Services.SeedTestData();
+}
+#endregion
 #region Use Services
 
 app
@@ -34,12 +42,6 @@ app
 var apiGroup = app.MapGroup("/api");//.AddEndpointFilter<AssignUserIdFilter>();
 apiGroup.MapAllEndpoints();
 
-// todo migrate - create the first migration
-//
-if (app.Environment.IsDevelopment())
-{
-    // todo seed test data
-}
 #endregion
 
 

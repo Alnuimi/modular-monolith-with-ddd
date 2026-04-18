@@ -30,7 +30,7 @@ internal sealed class AssetTypeDefinitionEntityConfiguration : IEntityTypeConfig
         builder.ComplexProperty(
             e => e.AllowedFileExtensions, complexBuilder =>
             {
-                var convertor = BuilderExtensions.BuildJsonListConversion<string>();
+                var convertor = BuilderExtensions.BuildJsonReadOnlyListConversion<string>();
                 complexBuilder.Property(e => e.Extensions)
                     .HasConversion(convertor)
                     .HasColumnName(complexBuilder.Metadata.PropertyInfo!.Name)
