@@ -8,7 +8,7 @@ internal sealed class ReviewerSpecializationEntityConfiguration : IEntityTypeCon
 {
     public void Configure(EntityTypeBuilder<ReviewerSpecialization> builder)
     {
-        builder.HasKey(je => new { je.Journal, je.ReviewerId });
+        builder.HasKey(je => new { je.JournalId, je.ReviewerId });
 
         builder.HasOne(r => r.Journal)
             .WithMany(j => j.Reviewers)

@@ -9,7 +9,7 @@ internal sealed class ReviewerEntityConfiguration :  IEntityTypeConfiguration<Re
 {
     public void Configure(EntityTypeBuilder<Reviewer> builder)
     {
-        builder.HasBaseType<Person>();
+        // builder.HasBaseType<Person>();
 
         builder.HasMany(r => r.Specializations)
             .WithOne(j => j.Reviewer);

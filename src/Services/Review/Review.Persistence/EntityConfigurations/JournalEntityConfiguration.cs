@@ -18,5 +18,7 @@ internal sealed  class JournalEntityConfiguration :  EntityConfiguration<Journal
         
         builder.Property(j => j.Abbreviation)
             .HasMaxLength(MaxLength.C16).IsRequired();
+
+         builder.HasMany(r => r.Reviewers).WithOne(j => j.Journal);
     }
 }

@@ -1,5 +1,6 @@
 using Blocks.AspNetCore.Filters;
 using Blocks.AspNetCore.Middleware;
+using Blocks.EntityFramework;
 using Carter;
 using Review.API;
 using Review.Application;
@@ -20,7 +21,14 @@ builder.Services
 #endregion
 
 var app = builder.Build();
-
+#region InitData
+//insight - explain when is the best time to run the migration, integrate the migration in the CI pipeline
+app.Migrate<ReviewDbContext>();
+if (app.Environment.IsDevelopment())
+{
+    // app.Services.SeedTestData();
+}
+#endregion
 #region Use Services
 
 app
@@ -35,12 +43,6 @@ var apiGroup = app.MapGroup("/api"); //.AddEndpointFilter<AssignUserIdFilter>();
 apiGroup.MapCarter();
 
 
-// todo migrate - create the first migration
-//
-if (app.Environment.IsDevelopment())
-{
-    // todo seed test data
-}
 #endregion
 
 
