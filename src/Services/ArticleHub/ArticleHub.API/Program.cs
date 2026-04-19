@@ -1,6 +1,7 @@
 using ArticleHub.API;
 using ArticleHub.Persistence;
 using Blocks.AspNetCore.Middleware;
+using Blocks.EntityFramework;
 using Carter;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +16,14 @@ builder.Services
 #endregion
 
 var app = builder.Build();
-
+#region InitData
+//insight - explain when is the best time to run the migration, integrate the migration in the CI pipeline
+app.Migrate<ArticleHubDbContext>();
+if (app.Environment.IsDevelopment())
+{
+    // app.Services.SeedTestData();
+}
+#endregion
 #region Use
 app
     .UseMiddleware<GlobalExceptionMiddleware>()
@@ -32,13 +40,5 @@ apiGroup.MapCarter();
 
 #endregion
 
-#region InitData
-// app.Migrate<ArticleHubDbContext>(); // todo-building
-
-if (app.Environment.IsDevelopment())
-{
-    // app.SeedTestData(); // todo-building
-}
-#endregion
 
 app.Run();
